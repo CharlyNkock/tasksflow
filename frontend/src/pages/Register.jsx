@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import api from '../api';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import api from "../api";
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -21,31 +21,22 @@ function Register() {
   };
 
   return (
-    <div>
-      <h2>Créer un compte</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nom d'utilisateur"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">S'inscrire</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <p>Déjà un compte ? <Link to="/login">Se connecter</Link></p>
+    <div className="auth-page">
+      <div className="auth-card">
+        <div className="auth-tabs">
+          <Link to="/login" className="auth-tab">Se connecter</Link>
+          <span className="auth-tab active">S'inscrire</span>
+        </div>
+        <h1 className="auth-title">Créer un compte</h1>
+        <form onSubmit={handleSubmit}>
+          <input className="auth-field" type="text" placeholder="Nom d'utilisateur" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input className="auth-field" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input className="auth-field" type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button className="auth-btn" type="submit">Créer un compte</button>
+        </form>
+        {error && <p className="auth-error">{error}</p>}
+        <p className="auth-footer">Déjà un compte ? <Link to="/login">Se connecter</Link></p>
+      </div>
     </div>
   );
 }
